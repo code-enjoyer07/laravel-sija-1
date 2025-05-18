@@ -13,9 +13,9 @@ return new class extends Migration
             $table->unsignedBigInteger('penulis_id');
             $table->unsignedBigInteger('penerbit_id');
             $table->unsignedBigInteger('kategori_id');
-            $table->string('buku_judul', 40);
-            $table->char('buku_isbn', 16);
-            $table->char('buku_thnterbit', 4);
+            $table->string('buku_judul');
+            $table->char('buku_isbn');
+            $table->char('buku_thnterbit');
 
             $table->foreign('penulis_id')->references('id')->on('penulis')
                 ->onDelete('cascade')->onUpdate('cascade');
@@ -23,6 +23,8 @@ return new class extends Migration
                 ->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('kategori_id')->references('id')->on('kategori')
                 ->onDelete('cascade')->onUpdate('cascade');
+
+            $table->timestamps();
         });
     }
 
@@ -31,4 +33,3 @@ return new class extends Migration
         Schema::dropIfExists('buku');
     }
 };
-

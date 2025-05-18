@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('rak', function (Blueprint $table) {
             $table->id();
-            $table->string('rak_nama', 20);
-            $table->string('rak_lokasi', 20);
+            $table->string('rak_nama');
+            $table->string('rak_lokasi');
             $table->integer('rak_kapasitas');
             $table->timestamps();
         });

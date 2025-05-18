@@ -15,4 +15,3 @@ class Penulis extends Model
         'nama_penulis',
     ];
 }
-

@@ -10,10 +10,12 @@ return new class extends Migration
     {
         Schema::create('penerbit', function (Blueprint $table) {
             $table->id();
-            $table->string('penerbit_nama', 50);
-            $table->string('penerbit_alamat', 50);
-            $table->char('penerbit_notelp', 13);
-            $table->string('penerbit_email', 50);
+            $table->string('penerbit_nama');
+            $table->text('penerbit_alamat');
+            $table->char('penerbit_notelp');
+            $table->string('penerbit_email');
+
+            $table->timestamps();
         });
     }
 

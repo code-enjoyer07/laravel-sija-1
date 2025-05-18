@@ -1,20 +1,17 @@
 <?php
 
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BukuController;
+use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\PenerbitController;
+use App\Http\Controllers\PenulisController;
+use App\Http\Controllers\RakController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
-/* |--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::redirect('/', '/login');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -28,19 +25,58 @@ Route::middleware('auth')->group(function () {
         Route::get('/siswa/peminjaman', [SiswaController::class, 'siswa_dashboard_create_peminjaman'])->name('siswa_dashboard_create_peminjaman');
         Route::get('/siswa/buku', [SiswaController::class, 'siswa_dashboard_buku'])->name('siswa_dashboard_buku');
 
-        Route::middleware('admin')->group(function () {
-            Route::get('/admin', [AdminController::class, 'admin_dashboard'])->name('admin_dashboard');
-            Route::get('/admin/create-book', [AdminController::class, 'admin_create_buku_dashboard'])->name('admin_create_buku_dashboard');
-            Route::get('/admin/update-book', [AdminController::class, 'admin_update_buku_dashboard'])->name('admin_update_buku_dashboard');
-            Route::get('/admin/penulis', [AdminController::class, 'admin_penulis_dashboard'])->name('admin_penulis_dashboard');
-            Route::get('/admin/penulis/create', [AdminController::class, 'admin_create_penulis_dashboard'])->name('admin_create_penulis_dashboard');
-            Route::get('/admin/penulis/update', [AdminController::class, 'admin_penulis_update_dashboard'])->name('admin_penulis_update_dashboard');
-            Route::get('/admin/penerbit', [AdminController::class, 'admin_penerbit_dashboard'])->name('admin_penerbit_dashboard');
-            Route::get('/admin/penerbit/update', [AdminController::class, 'admin_penerbit_update_dashboard'])->name('admin_penerbit_update_dashboard');
-            Route::get('/admin/peminjaman', [AdminController::class, 'admin_peminjaman_dashboard'])->name('admin_peminjaman_dashboard');
-            Route::get('/admin/kategori', [AdminController::class, 'admin_kategori_dashboard'])->name('admin_kategori_dashboard');
-            Route::get('/admin/kategori/create', [AdminController::class, 'admin_create_kategori_dashboard'])->name('admin_create_kategori_dashboard');
-            Route::get('/settings', [SettingsController::class, 'pengaturan'])->name('pengaturan');
+
+        Route::prefix('admin')->name('admin.')->group(function () {
+            Route::get('/', [AdminController::class, 'admin_dashboard'])->name('index');
+            Route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
+            Route::get('/buku/create', [BukuController::class, 'create'])->name('buku.create');
+            Route::post('/buku', [BukuController::class, 'store'])->name('buku.store');
+            Route::get('/buku/{id}/edit', [BukuController::class, 'edit'])->name('buku.edit');
+            Route::put('/buku/{id}', [BukuController::class, 'update'])->name('buku.update');
+            Route::delete('/buku/{id}', [BukuController::class, 'destroy'])->name('buku.destroy');
+
+            Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index');
+            Route::get('/kategori/create', [KategoriController::class, 'create'])->name('kategori.create');
+            Route::post('/kategori', [KategoriController::class, 'store'])->name('kategori.store');
+            Route::get('/kategori/{id}/edit', [KategoriController::class, 'edit'])->name('kategori.edit');
+            Route::put('/kategori/{id}', [KategoriController::class, 'update'])->name('kategori.update');
+            Route::delete('/kategori/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
+
+            Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
+            Route::get('/peminjaman/create', [PeminjamanController::class, 'create'])->name('peminjaman.create');
+            Route::post('/peminjaman', [PeminjamanController::class, 'store'])->name('peminjaman.store');
+            Route::get('/peminjaman/{id}/edit', [PeminjamanController::class, 'edit'])->name('peminjaman.edit');
+            Route::put('/peminjaman/{id}', [PeminjamanController::class, 'update'])->name('peminjaman.update');
+            Route::delete('/peminjaman/{id}', [PeminjamanController::class, 'destroy'])->name('peminjaman.destroy');
+
+            Route::get('/penerbit', [PenerbitController::class, 'index'])->name('penerbit.index');
+            Route::get('/penerbit/create', [PenerbitController::class, 'create'])->name('penerbit.create');
+            Route::post('/penerbit', [PenerbitController::class, 'store'])->name('penerbit.store');
+            Route::get('/penerbit/{id}/edit', [PenerbitController::class, 'edit'])->name('penerbit.edit');
+            Route::put('/penerbit/{id}', [PenerbitController::class, 'update'])->name('penerbit.update');
+            Route::delete('/penerbit/{id}', [PenerbitController::class, 'destroy'])->name('penerbit.destroy');
+
+            Route::get('/penulis', [PenulisController::class, 'index'])->name('penulis.index');
+            Route::get('/penulis/create', [PenulisController::class, 'create'])->name('penulis.create');
+            Route::post('/penulis', [PenulisController::class, 'store'])->name('penulis.store');
+            Route::get('/penulis/{id}/edit', [PenulisController::class, 'edit'])->name('penulis.edit');
+            Route::put('/penulis/{id}', [PenulisController::class, 'update'])->name('penulis.update');
+            Route::delete('/penulis/{id}', [PenulisController::class, 'destroy'])->name('penulis.destroy');
+
+            Route::get('/user', [UserController::class, 'index'])->name('user.index');
+            Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
+            Route::post('/user', [UserController::class, 'store'])->name('user.store');
+            Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+            Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
+            Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+
+            Route::get('/rak', [RakController::class, 'index'])->name('rak.index');
+            Route::get('/rak/create', [RakController::class, 'create'])->name('rak.create');
+            Route::post('/rak', [RakController::class, 'store'])->name('rak.store');
+            Route::get('/rak/{id}/edit', [RakController::class, 'edit'])->name('rak.edit');
+            Route::put('/rak/{id}', [RakController::class, 'update'])->name('rak.update');
+            Route::delete('/rak/{id}', [RakController::class, 'destroy'])->name('rak.destroy');
         });
+        Route::get('/settings', [SettingsController::class, 'pengaturan'])->name('pengaturan');
     });
 });

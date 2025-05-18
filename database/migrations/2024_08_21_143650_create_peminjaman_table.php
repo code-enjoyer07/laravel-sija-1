@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('peminjaman_pinjam')->nullable();
             $table->date('peminjaman_vent')->nullable();
             $table->boolean('peminjaman_status')->default(false);
-            $table->string('pemajaman_nite', 100)->nullable();
+            $table->text('pemajaman_note')->nullable();
             $table->integer('peminjaman_denda')->nullable();
             $table->timestamps();
 

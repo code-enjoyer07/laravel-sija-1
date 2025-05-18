@@ -16,7 +16,7 @@ class Peminjaman extends Model
         'peminjaman_pinjam',
         'peminjaman_vent',
         'peminjaman_status',
-        'pemajaman_nite',
+        'pemajaman_note',
         'peminjaman_denda',
     ];
 

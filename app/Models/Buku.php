@@ -12,32 +12,27 @@ class Buku extends Model
     protected $table = 'buku';
 
     protected $fillable = [
-        'buku_penulis_id',
-        'buku_penerbit_id',
-        'buku_kategori_id',
-        'buku_rak_id',
+        'penulis_id',
+        'penerbit_id',
+        'kategori_id',
         'buku_judul',
-        'buku_ison',
+        'buku_isbn',
         'buku_thnterbit',
     ];
 
     public function penulis()
     {
-        return $this->belongsTo(Penulis::class, 'buku_penulis_id', 'id');
+        return $this->belongsTo(Penulis::class, 'penulis_id', 'id');
     }
 
     public function penerbit()
     {
-        return $this->belongsTo(Penerbit::class, 'buku_penerbit_id', 'id');
+        return $this->belongsTo(Penerbit::class, 'penerbit_id', 'id');
     }
 
     public function kategori()
     {
-        return $this->belongsTo(Kategori::class, 'buku_kategori_id', 'id');
-    }
-
-    public function rak()
-    {
-        return $this->belongsTo(Rak::class, 'buku_rak_id', 'id');
+        return $this->belongsTo(Kategori::class, 'kategori_id', 'id');
     }
 }
+

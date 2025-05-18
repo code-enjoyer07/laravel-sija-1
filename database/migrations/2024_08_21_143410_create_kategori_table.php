@@ -10,7 +10,9 @@ return new class extends Migration
     {
         Schema::create('kategori', function (Blueprint $table) {
             $table->id(); // auto-increment primary key 'id'
-            $table->string('kategori_nama', 20);
+            $table->string('kategori_nama');
+
+            $table->timestamps();
         });
     }
 
