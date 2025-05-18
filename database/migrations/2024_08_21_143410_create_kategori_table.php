@@ -6,20 +6,14 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('kategori', function (Blueprint $table) {
-            $table->string('kategori_id', 16)->primary();
+            $table->id(); // auto-increment primary key 'id'
             $table->string('kategori_nama', 20);
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('kategori');
