@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-    <body class="bg-gray-100">
+    <body class="bg-gray-100 min-h-screen">
     <nav class="bg-gray-800 text-white flex items-center justify-between p-4">
         <a class="text-lg font-bold" href="#">Admin Dashboard</a>
         <button class="text-white md:hidden" id="sidebarToggle">
@@ -17,21 +17,21 @@
 
     <div class="flex">
         <!-- Sidebar -->
-        <div id="sidebar" class="bg-gray-800 h-screen w-64 px-4 py-6 fixed md:relative -translate-x-full md:translate-x-0 transition-transform duration-300">
+        <div id="sidebar" class="bg-gray-800 w-64 px-4 py-6 min-h-screen sticky top-0">
             <nav class="flex flex-col space-y-2">
-                <a class="flex items-center text-white py-2 px-3 rounded hover:bg-gray-700" href="{{route('siswa_dashboard')}}">
+                <a class="flex items-center text-white py-2 px-3 rounded hover:bg-gray-700" href="{{route('siswa.index')}}">
                     <i class="fas fa-tachometer-alt mr-2"></i>
                     Dashboard
                 </a>
-                <a class="flex items-center text-white py-2 px-3 rounded hover:bg-gray-700" href="{{route('siswa_dashboard_buku')}}">
+                <a class="flex items-center text-white py-2 px-3 rounded hover:bg-gray-700" href="{{route('siswa.buku.index')}}">
                     <i class="fas fa-book mr-2"></i>
                     Buku
                 </a>
-                <a class="flex items-center text-white py-2 px-3 rounded hover:bg-gray-700" href="{{route('siswa_dashboard_create_peminjaman')}}">
+                <a class="flex items-center text-white py-2 px-3 rounded hover:bg-gray-700" href="{{route('siswa.peminjaman.index')}}">
                     <i class="fas fa-hand mr-2"></i>
                     Peminjaman
                 </a>
-                <a class="flex items-center text-white py-2 px-3 rounded hover:bg-gray-700" href="{{route('pengaturan')}}">
+                <a class="flex items-center text-white py-2 px-3 rounded hover:bg-gray-700" href="{{route('profile')}}">
                     <i class="fas fa-gear mr-2"></i>
                     Pengaturan
                 </a>
@@ -42,7 +42,7 @@
             </nav>
         </div>
 
-        <div class="flex flex-col w-full h-screen p-5">
+        <div class="flex flex-col w-full p-5">
             <!-- Content Section -->
             @yield('content')
             <footer class="py-4 bg-gray-200 mt-auto">

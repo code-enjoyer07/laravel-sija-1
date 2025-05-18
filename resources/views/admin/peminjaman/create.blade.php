@@ -75,15 +75,15 @@
             </div>
 
             <div class="md:col-span-2">
-                <label for="peminjaman_note" class="block font-medium text-gray-700">Note</label>
+                <label for="pemajaman_note" class="block font-medium text-gray-700">Note</label>
                 <textarea
-                    name="peminjaman_note"
-                    id="peminjaman_note"
+                    name="pemajaman_note"
+                    id="pemajaman_note"
                     rows="4"
                     class="mt-1 block w-full rounded-md border border-gray-300 bg-white shadow-sm
                            focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                 >{{ old('peminjaman_note') }}</textarea>
-                @error('peminjaman_note')
+                @error('pemajama_note')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                 @enderror
             </div>

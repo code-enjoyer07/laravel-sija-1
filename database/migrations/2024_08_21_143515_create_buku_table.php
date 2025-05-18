@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('buku_judul');
             $table->char('buku_isbn');
             $table->char('buku_thnterbit');
+            $table->string('buku_image_url')->default('https://cdn.eurekabookhouse.co.id/ebh/product/all/BAHASA_SUNDA_(1)1.jpeg');
 
             $table->foreign('penulis_id')->references('id')->on('penulis')
                 ->onDelete('cascade')->onUpdate('cascade');

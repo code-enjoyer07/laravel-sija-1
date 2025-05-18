@@ -26,6 +26,7 @@
                     <th class="px-4 py-3 text-left text-sm font-semibold">Kategori</th>
                     <th class="px-4 py-3 text-left text-sm font-semibold">Tahun</th>
                     <th class="px-4 py-3 text-left text-sm font-semibold">ISBN</th>
+                    <th class="px-4 py-3 text-left text-sm font-semibold">Image Preview</th>
                     <th class="px-4 py-3 text-left text-sm font-semibold">Aksi</th>
                 </tr>
             </thead>
@@ -38,6 +39,7 @@
                         <td class="px-4 py-2">{{ $item->kategori->kategori_nama }}</td>
                         <td class="px-4 py-2">{{ $item->buku_thnterbit }}</td>
                         <td class="px-4 py-2">{{ $item->buku_isbn }}</td>
+                        <td class="px-3 py-2"><a class="text-blue-500" href="{{ $item->buku_image_url }}">View</a></td>
                         <td class="px-4 py-2 space-x-2">
                             <a href="{{ route('admin.buku.edit', $item->id) }}"
                                 class="inline-flex px-3 py-1 text-sm text-white bg-yellow-500 hover:bg-yellow-600 rounded">

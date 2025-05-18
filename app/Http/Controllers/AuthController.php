@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-use Illuminate\Support\Str;
+use Illuminate\Hashing\HashManager;
 
 class AuthController extends Controller
 {
@@ -81,5 +81,53 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/login');
+    }
+
+    public function profile()
+    {
+        $title = 'Edit Profil';
+        $user = Auth::user();
+        return view('profile.index', compact('title', 'user'));
+    }
+
+
+    public function updateProfile(Request $request)
+    {
+
+        $user = User::find(Auth::id());
+
+
+        $validated = $request->validate([
+            'user_name' => 'required|max:255',
+            'user_email' => 'required|email|max:255|unique:users,user_email,' . $user->id,
+            'user_username' => 'required|max:255|unique:users,user_username,' . $user->id,
+            'user_notlp' => 'required|max:20',
+            'user_alamat' => 'required',
+            'user_password' => 'nullable|min:8|confirmed',
+            'user_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $updateData = [
+            'user_name' => $validated['user_name'],
+            'user_email' => $validated['user_email'],
+            'user_username' => $validated['user_username'],
+            'user_notlp' => $validated['user_notlp'],
+            'user_alamat' => $validated['user_alamat'],
+        ];
+
+        if (!empty($validated['user_password'])) {
+            $updateData['user_password'] = Hash::make($validated['user_password']);
+        }
+
+        if ($request->hasFile('user_picture')) {
+            $file = $request->file('user_picture');
+            $filename = time() . '_' . Hash::make($file->getClientOriginalName());
+            $file->move(public_path('images/profile'), $filename);
+            $updateData['user_picture'] = $filename;
+        }
+
+        $user->update($updateData);
+
+        return back()->with('success', 'Profil berhasil diperbarui.');
     }
 }

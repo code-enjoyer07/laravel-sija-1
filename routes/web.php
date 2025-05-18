@@ -8,7 +8,6 @@ use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PenerbitController;
 use App\Http\Controllers\PenulisController;
 use App\Http\Controllers\RakController;
-use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -19,11 +18,17 @@ Route::post('/login', [AuthController::class, 'loginPost'])->name('login.post');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'registerPost'])->name('register.post');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
 Route::middleware('auth')->group(function () {
     Route::prefix('/dashboard')->group(function () {
-        Route::get('/siswa', [SiswaController::class, 'siswa_dashboard'])->name('siswa_dashboard');
-        Route::get('/siswa/peminjaman', [SiswaController::class, 'siswa_dashboard_create_peminjaman'])->name('siswa_dashboard_create_peminjaman');
-        Route::get('/siswa/buku', [SiswaController::class, 'siswa_dashboard_buku'])->name('siswa_dashboard_buku');
+        Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
+        Route::post('/profile/update', [AuthController::class, 'updateProfile'])->name('profile.update');
+        Route::prefix('siswa')->name('siswa.')->group(function () {
+            // siswa
+            Route::get('/', [SiswaController::class, 'index'])->name('index');
+            Route::get('/buku', [SiswaController::class, 'buku_index'])->name('buku.index');
+            Route::get('/peminjaman', [SiswaController::class, 'peminjaman_index'])->name('peminjaman.index');
+        });
 
 
         Route::prefix('admin')->name('admin.')->group(function () {
@@ -77,6 +82,5 @@ Route::middleware('auth')->group(function () {
             Route::put('/rak/{id}', [RakController::class, 'update'])->name('rak.update');
             Route::delete('/rak/{id}', [RakController::class, 'destroy'])->name('rak.destroy');
         });
-        Route::get('/settings', [SettingsController::class, 'pengaturan'])->name('pengaturan');
     });
 });

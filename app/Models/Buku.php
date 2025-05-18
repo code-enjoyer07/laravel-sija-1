@@ -18,6 +18,7 @@ class Buku extends Model
         'buku_judul',
         'buku_isbn',
         'buku_thnterbit',
+        'buku_image_url'
     ];
 
     public function penulis()

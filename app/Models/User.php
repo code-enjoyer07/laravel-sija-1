@@ -24,7 +24,8 @@ class User extends Model implements Authenticatable
         'user_email',
         'user_notlp',
         'user_password',
-        'user_level'
+        'user_level',
+        'user_picture'
     ];
 
     protected $hidden = [

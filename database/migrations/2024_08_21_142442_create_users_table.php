@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('user_notlp');
             $table->string('user_password');
             $table->enum('user_level', ['admin', 'anggota']);
+            $table->string('user_picture')->default('profile.jpg');
             $table->timestamps();
         });
     }

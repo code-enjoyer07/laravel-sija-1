@@ -71,6 +71,18 @@
                     required
                     class="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
             </div>
+
+            <div class="flex flex-col">
+                <label for="buku_image_url" class="block text-sm font-medium text-gray-700">URL Gambar Buku</label>
+                <input
+                type="url"
+                name="buku_image_url"
+                id="buku_image_url"
+                value="{{ $buku->buku_image_url ?? '' }}"
+                placeholder="https://example.com/image.jpg"
+                class="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+            </div>
+
         </div>
 
         <div>

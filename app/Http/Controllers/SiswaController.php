@@ -2,20 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buku;
+use App\Models\Peminjaman;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SiswaController extends Controller
 {
-    public function siswa_dashboard() {
+    public function index()
+    {
         $title = "Siswa Dashboard";
-        return view("siswa", compact("title"));
+        return view('siswa', compact('title'));
     }
-    public function siswa_dashboard_create_peminjaman() {
-        $title = "Siswa Pinjaman";
-        return view('siswa-create-peminjaman', compact('title'));
-    }
-    public function siswa_dashboard_buku() {
+
+    public function buku_index()
+    {
         $title = "Siswa Buku";
-        return view('siswa-buku', compact('title'));
+        $bukus = Buku::all();
+        return view('siswa.buku.index', compact('title', 'bukus'));
+    }
+    public function peminjaman_index()
+    {
+        $title = "Peminjaman Saya";
+        $user = Auth::user();
+
+        $peminjaman = Peminjaman::with('peminjamanDetails.buku')
+            ->where('user_id', $user->id)
+            ->get();
+
+        return view('siswa.peminjaman.index', compact('title', 'peminjaman'));
     }
 }
