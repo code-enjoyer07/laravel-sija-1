@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel-app
+    restart: always
+    working_dir: /var/www
+    volumes:
+      - .:/var/www
+    ports:
+      - "88888:8000"
+    networks:
+      - laravel-sija-db_default
+
+networks:
+  laravel-sija-db_default:
+    external: true
+

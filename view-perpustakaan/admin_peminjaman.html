@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Admin Dashboard</title>
+        <link href="css/style.css" rel="stylesheet" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+            integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class="bg-gray-100">
+        <!-- Navbar -->
+        <nav
+            class="bg-gray-800 text-white flex items-center justify-between p-4"
+        >
+            <a class="text-lg font-bold" href="#">Admin Dashboard</a>
+            <!-- Tombol toggle hanya muncul di layar kecil -->
+            <button class="text-white md:hidden" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+
+        <div class="flex">
+            <!-- Sidebar -->
+            <div
+                id="sidebar"
+                class="bg-gray-800 h-screen w-64 px-4 py-6 fixed md:relative -translate-x-full md:translate-x-0 transition-transform duration-300"
+            >
+                <nav class="flex flex-col space-y-2">
+                    <a
+                        class="flex items-center text-white py-2 px-3 rounded hover:bg-gray-700"
+                        href="#"
+                    >
+                        <i class="fas fa-tachometer-alt mr-2"></i>
+                        Dashboard
+                    </a>
+                    <a
+                        class="flex items-center text-white py-2 px-3 rounded hover:bg-gray-700"
+                        href="#"
+                    >
+                        <i class="fas fa-book mr-2"></i>
+                        Buku
+                    </a>
+                    <a
+                        class="flex items-center text-white py-2 px-3 rounded hover:bg-gray-700"
+                        href="#"
+                    >
+                        <i class="fas fa-book mr-2"></i>
+                        Kategori Buku
+                    </a>
+                    <a
+                        class="flex items-center text-white py-2 px-3 rounded hover:bg-gray-700"
+                        href="#"
+                    >
+                        <i class="fas fa-pencil mr-2"></i>
+                        Penulis
+                    </a>
+                    <a
+                        class="flex items-center text-white py-2 px-3 rounded hover:bg-gray-700"
+                        href="#"
+                    >
+                        <i class="fas fa-house mr-2"></i>
+                        Penerbit
+                    </a>
+                    <a
+                        class="flex items-center text-white py-2 px-3 rounded hover:bg-gray-700"
+                        href="#"
+                    >
+                        <i class="fas fa-hand mr-2"></i>
+                        Peminjaman
+                    </a>
+                    <a
+                        class="flex items-center text-white py-2 px-3 rounded hover:bg-gray-700"
+                        href="#"
+                    >
+                        <i class="fas fa-gear mr-2"></i>
+                        Pengaturan
+                    </a>
+                    <a
+                        class="flex items-center text-white py-2 px-3 rounded hover:bg-gray-700"
+                        href="#"
+                    >
+                        <i class="fas fa-right-from-bracket mr-2"></i>
+                        Logout
+                    </a>
+                </nav>
+            </div>
+
+            <div class="flex flex-col w-full h-screen p-5">
+                <main class="flex-1">
+                    <h1 class="text-xl font-bold mb-5">Data Peminjaman</h1>
+                    <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                        <table class="min-w-full bg-white">
+                            <thead class="bg-gray-200">
+                                <tr>
+                                    <th
+                                        class="text-left px-4 py-2 text-gray-700 font-semibold"
+                                    >
+                                        ID
+                                    </th>
+                                    <th
+                                        class="text-left px-4 py-2 text-gray-700 font-semibold"
+                                    >
+                                        Nama Peminjam
+                                    </th>
+                                    <th
+                                        class="text-left px-4 py-2 text-gray-700 font-semibold"
+                                    >
+                                        Judul Buku
+                                    </th>
+                                    <th
+                                        class="text-left px-4 py-2 text-gray-700 font-semibold"
+                                    >
+                                        Tanggal Pinjam
+                                    </th>
+                                    <th
+                                        class="text-left px-4 py-2 text-gray-700 font-semibold"
+                                    >
+                                        Status
+                                    </th>
+                                    <th
+                                        class="text-left px-4 py-2 text-gray-700 font-semibold"
+                                    >
+                                        Aksi
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Replace with dynamic data -->
+                                <tr>
+                                    <td class="border px-4 py-2">1</td>
+                                    <td class="border px-4 py-2">
+                                        Budi Santoso
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        Laskar Pelangi
+                                    </td>
+                                    <td class="border px-4 py-2">2023-10-01</td>
+                                    <td class="border px-4 py-2 text-green-500">
+                                        Dipinjam
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <button
+                                            class="text-blue-500 hover:underline"
+                                            onclick="window.location.href='/update-peminjaman/1'"
+                                        >
+                                            Update Status
+                                        </button>
+                                    </td>
+                                </tr>
+                                <!-- Repeat rows as needed -->
+                            </tbody>
+                        </table>
+                    </div>
+                </main>
+                <footer class="py-4 bg-gray-200 mt-auto">
+                    <div class="text-center text-gray-600">
+                        Copyright &copy; Web Perpustakaan 2023
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+        <script src="js/main.js"></script>
+    </body>
+</html>

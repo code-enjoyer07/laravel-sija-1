@@ -1,0 +1,48 @@
+
+kind: pipeline
+name: default
+
+steps:
+  - name: Clone repository
+    image: alpine/git
+    commands:
+      - git clone https://git.tuxedolabs.xyz/rafia9005/laravel-sija-1.git
+    volumes:
+      - name: source
+        path: /drone/src
+
+  - name: Install PHP
+    image: php:8.0-fpm
+    commands:
+      - apt-get update
+      - apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev zip git
+      - docker-php-ext-configure gd --with-freetype --with-jpeg
+      - docker-php-ext-install gd pdo pdo_mysql
+      - curl -sS https://getcomposer.org/installer | php
+      - mv composer.phar /usr/local/bin/composer
+    volumes:
+      - name: source
+        path: /drone/src
+
+  - name: Install Dependencies
+    image: php:8.0-fpm
+    commands:
+      - cd /drone/src
+      - composer install --prefer-dist --no-interaction
+    volumes:
+      - name: source
+        path: /drone/src
+
+  - name: Run Tests
+    image: php:8.0-fpm
+    commands:
+      - cd /drone/src
+      - ./vendor/bin/phpunit --configuration phpunit.xml
+    volumes:
+      - name: source
+        path: /drone/src
+
+volumes:
+  - name: source
+    temp: {}
+

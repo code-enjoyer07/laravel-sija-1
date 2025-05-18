@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Admin Dashboard</title>
+        <link href="css/style.css" rel="stylesheet" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+            integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class="bg-gray-100">
+        <!-- Navbar -->
+        <nav
+            class="bg-gray-800 text-white flex items-center justify-between p-4"
+        >
+            <a class="text-lg font-bold" href="#">Admin Dashboard</a>
+            <!-- Tombol toggle hanya muncul di layar kecil -->
+            <button class="text-white md:hidden" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+
+        <div class="flex">
+            <!-- Sidebar -->
+            <div
+                id="sidebar"
+                class="bg-gray-800 h-screen w-64 px-4 py-6 fixed md:relative -translate-x-full md:translate-x-0 transition-transform duration-300"
+            >
+                <nav class="flex flex-col space-y-2">
+                    <a
+                        class="flex items-center text-white py-2 px-3 rounded hover:bg-gray-700"
+                        href="#"
+                    >
+                        <i class="fas fa-tachometer-alt mr-2"></i>
+                        Dashboard
+                    </a>
+                    <a
+                        class="flex items-center text-white py-2 px-3 rounded hover:bg-gray-700"
+                        href="#"
+                    >
+                        <i class="fas fa-book mr-2"></i>
+                        Buku
+                    </a>
+                    <a
+                        class="flex items-center text-white py-2 px-3 rounded hover:bg-gray-700"
+                        href="#"
+                    >
+                        <i class="fas fa-book mr-2"></i>
+                        Kategori Buku
+                    </a>
+                    <a
+                        class="flex items-center text-white py-2 px-3 rounded hover:bg-gray-700"
+                        href="#"
+                    >
+                        <i class="fas fa-pencil mr-2"></i>
+                        Penulis
+                    </a>
+                    <a
+                        class="flex items-center text-white py-2 px-3 rounded hover:bg-gray-700"
+                        href="#"
+                    >
+                        <i class="fas fa-house mr-2"></i>
+                        Penerbit
+                    </a>
+                    <a
+                        class="flex items-center text-white py-2 px-3 rounded hover:bg-gray-700"
+                        href="#"
+                    >
+                        <i class="fas fa-hand mr-2"></i>
+                        Peminjaman
+                    </a>
+                    <a
+                        class="flex items-center text-white py-2 px-3 rounded hover:bg-gray-700"
+                        href="#"
+                    >
+                        <i class="fas fa-gear mr-2"></i>
+                        Pengaturan
+                    </a>
+                    <a
+                        class="flex items-center text-white py-2 px-3 rounded hover:bg-gray-700"
+                        href="#"
+                    >
+                        <i class="fas fa-right-from-bracket mr-2"></i>
+                        Logout
+                    </a>
+                </nav>
+            </div>
+
+            <div class="flex flex-col p-6 h-screen w-full ml-0 md:ml-64">
+                <main>
+                    <div class="container mx-auto">
+                        <h1 class="text-2xl font-bold mt-4">Peminjaman Buku</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">
+                                Halaman Peminjaman Buku
+                            </li>
+                        </ol>
+                        <form action="">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div class="form-group">
+                                    <label for="nama" class="form-label"
+                                        >Nama Peminjam *</label
+                                    >
+                                    <input
+                                        type="text"
+                                        name="nama"
+                                        id="nama"
+                                        class="form-control border rounded p-2 w-full"
+                                        disabled
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="tgl_pinjam" class="form-label"
+                                        >Tanggal Pinjam *</label
+                                    >
+                                    <input
+                                        type="date"
+                                        name="tgl_pinjam"
+                                        id="tgl_pinjam"
+                                        class="form-control border rounded p-2 w-full"
+                                    />
+                                </div>
+                            </div>
+                            <div
+                                class="grid grid-cols-1 md:grid-cols-3 gap-4 my-3"
+                            >
+                                <div class="form-group">
+                                    <label for="tgl_kembali" class="form-label"
+                                        >Tanggal Kembali *</label
+                                    >
+                                    <input
+                                        type="date"
+                                        name="tgl_kembali"
+                                        id="tgl_kembali"
+                                        class="form-control border rounded p-2 w-full"
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="buku" class="form-label"
+                                        >Buku 1 *</label
+                                    >
+                                    <select
+                                        class="form-control border rounded p-2 w-full"
+                                        name="buku"
+                                        id="buku"
+                                    >
+                                        <option selected>-Pilih Buku-</option>
+                                        <option value="bulan">
+                                            Bulan - Tere Liye
+                                        </option>
+                                        <option value="bumi">
+                                            Bumi - Tere Liye
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="my-3">
+                                <button
+                                    class="bg-blue-500 text-white rounded p-2 mr-2"
+                                >
+                                    Buat Peminjaman
+                                </button>
+                                <button
+                                    class="bg-yellow-500 text-white rounded p-2"
+                                >
+                                    Tambah Buku
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </main>
+                <footer class="py-4 bg-gray-200 mt-auto">
+                    <div class="text-center text-gray-600">
+                        Copyright &copy; Web Perpustakaan 2023
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+        <script src="js/main.js"></script>
+    </body>
+</html>
